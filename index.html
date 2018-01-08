@@ -1,13 +1,36 @@
 <!Doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>vue js + firebase gogole auth</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue js + firebase gogole and facebook auth</title>
+    <style> 
+    body {
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";}
+    
+    #app {
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      left:250px;
+      top: 5%;
+      align-content: center;
+    }
+
+    button{
+      display: inline-flex;
+      padding: 5px 5px;
+      font-size: 24px;
+      border-radius: 5px;
+    }
+
+      </style>
   </head>
   
   <body>
     <div id="app">
-      <h1>Simple Google auth  with firebase</h1>
+      <h1>Simple Google and facebook auth with firebase</h1>
       <template v-if="user">
         <img :src="user.photoURL" alt="avatar" style="width: 30px; height: 30px;">
         <button @click="signOut">SignOut</button>
@@ -87,7 +110,7 @@
               })
           },          
           signOut () {
-            firebase.auth().signOut().
+            firebase.auth().signOut()
               .then(() => {
               this.user = null
             })
