@@ -1,0 +1,75 @@
+<!Doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue js + firebase gogole auth</title>
+  </head>
+  
+  <body>
+    <div id="app">
+      <button @click="signInWithGoogle"> login with gmail</button>
+
+    </div>
+
+  </body>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-auth.js"></script>
+  <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
+  
+  <script>
+
+    // setup config firebase
+      var config = {
+        apiKey: "AIzaSyB_qujipkF6Xs76GE9QrqGwFhd7ZuRC_rA",
+        authDomain: "tutorialyt-3b8b0.firebaseapp.com",
+        databaseURL: "https://tutorialyt-3b8b0.firebaseio.com",
+        projectId: "tutorialyt-3b8b0",
+        storageBucket: "tutorialyt-3b8b0.appspot.com",
+        messagingSenderId: "177442317958"
+      };
+  // firebase.initializeApp(config);
+    const firebaseApp = firebase.initializeApp(config);
+    const db = firebaseApp.database()
+
+    var App = new Vue({
+        el :'#app',
+        data:{
+         loading: true,
+         user: null,
+         items:[],
+         item: ''
+        },
+        methods: {
+          signInWithGoogle() {
+           // console.log("button login was clicked")
+
+            const provider = new firebase.auth.GoogleAuthProvider()
+            firebase.auth().signInWithRedirect(provider)
+              .then(result => {
+                console.log(result)
+              })
+              .catch(error =>{
+                console.log(error)
+              })
+          }
+        }
+    })
+  </script>
+</html>
+
+
+<!-- <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB_qujipkF6Xs76GE9QrqGwFhd7ZuRC_rA",
+    authDomain: "tutorialyt-3b8b0.firebaseapp.com",
+    databaseURL: "https://tutorialyt-3b8b0.firebaseio.com",
+    projectId: "tutorialyt-3b8b0",
+    storageBucket: "tutorialyt-3b8b0.appspot.com",
+    messagingSenderId: "177442317958"
+  };
+  firebase.initializeApp(config);
+</script> -->
