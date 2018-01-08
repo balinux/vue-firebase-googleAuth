@@ -43,6 +43,15 @@
 
     var App = new Vue({
         el :'#app',
+
+        beforeCreate: function () {
+          firebase.auth().onAuthStateChanged(user =>{
+            if (user) {
+              this.user = user
+            }
+          })
+        },
+
         data:{
          loading: true,
          user: null,
